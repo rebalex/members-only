@@ -1,0 +1,17 @@
+<% content_for :title, "New post" %>
+
+<h1>New post</h1>
+
+<%= form_with model: @post, method: :post do |form| %>
+  <%= form.label :title %> <br />
+  <%= form.text_field :title %><br /><br />
+  <%= form.label :body %> <br />
+  <%= form.text_area :body, placeholder: 'Write your post here' %><br /><br />
+  <%= submit_tag("Create post") %>
+  <% end %>
+
+<br>
+
+<div>
+  <%= link_to "Back to posts", posts_path %>
+</div>
