@@ -14,15 +14,21 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to @post
+      redirect_to action: "index"
     else
       render :new, status: :unprocessable_entity
     end
   end
 
+  def show
+    @post = Post.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path
+  end
+
   private
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :user_id)
   end
 
   def require_login

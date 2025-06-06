@@ -3,7 +3,13 @@
 <ul>
   <% @posts.each do |post| %>
     <li>
-      <%= post.title %>
+      <strong><%= link_to post.title, "/posts/#{post.id}" %></strong>
     </li>
+      <% if signed_in? %>
+        Posted by:
+        <%= post.user.username %>
+      <% end %>
+      <br>
+      <br>
   <% end %>
 </ul>
